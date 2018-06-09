@@ -1,0 +1,76 @@
+body {
+  text-align: center;
+  overflow: hidden;
+  background-color: black;
+}
+
+
+canvas {
+  animation-name: fadein;
+  animation-duration: 0.5s;
+  border-radius: 5px;
+}
+
+
+.camein {
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100%;
+  margin: 0;
+
+  animation-name: comein;
+  animation-duration: 0.5s;
+}
+
+.wentout {
+  position: absolute;
+  background-color: white;
+  box-shadow: 10px 10px 10px 10px;
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 100px;
+  height: 100%;
+  margin: 0;
+  animation-name: getout;
+  animation-duration: 0.5s;
+}
+
+@keyframes comein {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes getout {
+  from {
+    right: 0;
+  }
+  to {
+    right: -100px;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+input {
+  outline: none;
+  border: 1px solid black;
+  border-radius: none;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <title>Triangulated Canvas</title>
+  </head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div class="camein" id="menu">
+  <script>
+  let colors = [
+    "grayscale",
+    "red",
+    "green",
+    "blue",
+    "yellow",
+    "cyan",
+    "pink"
+  ]
+  for (let i = 0; i < colors.length; i++) {
+    document.write('<input type="button" value="' + colors[i] + '" onclick="setColor(\'' + colors[i] + '\')"><br>')
+  }
+
+  </script>
+  <input type="button" value="randomizer" id="randomizer" onclick="randomize()">
+  <input type="button" value="&#128190;" onclick="save()">
+</div>
+<br>
+<input type="button" value="&#9776;" onclick="menu()">
+  <script src="js/init.js"></script>
+  <script src="js/triangle.js"></script>
+<script>
+// TODO: Make the buttons more userfriendly
+
+const setColor = (color) =>
+{
+  shadeof = color
+  if (color === "grayscale")
+    document.getElementById("randomizer").style.backgroundColor = ""
+  else
+    document.getElementById("randomizer").style.backgroundColor = shadeof
+
+  
+}
+
+const menu = () =>
+{
+  let thediv = document.getElementById("menu")
+  thediv.className = thediv.className == "camein" ? "wentout" : "camein"
+}
+
+
+
+for (let i = 0; i < triangles.length; i++)
+{
+  triangles[i].color = rgb(255,255,255)
+  triangles[i].graph()
+}
+
+
+
+canvas.onmousemove = (e) => {draw(e)}
+// TODO: Add support for mouse
+
+
+let shadeof = "cyan"
+
+
+const draw = (e) =>
+{
+  let canvasPosition = canvas.getBoundingClientRect()
+  for (let i = 0; i < triangles.length; i++)
+  {
+    if (triangles[i].isInsideTriangle(e.clientX - canvasPosition.left, e.clientY - canvasPosition.top))
+    {
+      let temp;
+      switch (shadeof)
+      {
+        case "grayscale":
+          temp = randomInt(0,255)
+          triangles[i].color = rgb(temp, temp, temp)
+        break
+        case "blue":
+          triangles[i].color = rgb(0, 0, randomInt(0,255))
+        break
+        case "red":
+          triangles[i].color = rgb(randomInt(0,255), 0, 0)
+        break
+        case "green":
+          triangles[i].color = rgb(0, randomInt(0,255), 0)
+        break
+        case "yellow":
+          temp = randomInt(0,255)
+          triangles[i].color = rgb(temp, temp, 0)
+        break
+        case "cyan":
+          triangles[i].color = rgb(randomInt(0,255), 255, 255)
+        break
+        case "pink":
+          triangles[i].color = rgb(255, randomInt(0,255), 255)
+        break
+
+      }
+      triangles[i].graph()
+    }
+  }
+}
+const randomize = () => 
+{
+  for (let i = 0; i < triangles.length; i++)
+  {
+    let temp;
+    switch (shadeof)
+    {
+      case "grayscale":
+        temp = randomInt(0,255)
+        triangles[i].color = rgb(temp, temp, temp)
+      break
+      case "blue":
+        triangles[i].color = rgb(0, 0, randomInt(0,255))
+      break
+      case "red":
+        triangles[i].color = rgb(randomInt(0,255), 0, 0)
+      break
+      case "green":
+        triangles[i].color = rgb(0, randomInt(0,255), 0)
+      break
+      case "yellow":
+        temp = randomInt(0,255)
+        triangles[i].color = rgb(temp, temp, 0)
+      break
+      case "cyan":
+        triangles[i].color = rgb(randomInt(0,255), 255, 255)
+      break
+      case "pink":
+        triangles[i].color = rgb(255, randomInt(0,255), 255)
+      break
+
+    }
+    triangles[i].graph()
+  }
+}
+const save = () =>
+{
+  window.open(canvas.toDataURL("image/png"))
+}
+
+
+
+window.onload = ()=> {randomize()}
+</script>
+</body>
+
+</html>
